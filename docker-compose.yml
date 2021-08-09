@@ -1,0 +1,28 @@
+version: 3.9
+
+services:
+  app:
+    image: chrisemke/junglechallenge:0.1
+    container_name: django
+    build:
+      context: .
+    ports:
+      - 8000:8000
+    volumes:
+      - ./app:/app
+    depends_on:
+        - pgdb
+  pgdb:
+    image: postgres
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: teste
+      POSTGRES_DB: teste
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:
+  app:
