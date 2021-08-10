@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication',
     'authors',
-    # 'articles'
+    'articles'
 ]
 
 MIDDLEWARE = [
