@@ -4,12 +4,14 @@ from rest_framework.exceptions import NotFound, ValidationError
 from rest_framework import status
 from .models import Authors
 from .serializers import AuthorsSerializer
+from utils.validator import Validator
 
 
 class AuthorsView(APIView):
     def post(self, request, format=None):
         author = AuthorsSerializer(data=request.data)
         if (author.is_valid()):
+            Validator(author.validated_data)
             author.save()
             return Response(author.data, status=status.HTTP_201_CREATED)
 
@@ -31,6 +33,7 @@ class AuthorsView(APIView):
             author = Authors.objects.get(pk=pk)
             author = AuthorsSerializer(author, request.data)
             if (author.is_valid()):
+                Validator(author.validated_data)
                 author.save()
                 return Response(author.data, status=status.HTTP_200_OK)
             else:

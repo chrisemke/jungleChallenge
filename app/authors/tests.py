@@ -37,21 +37,21 @@ class TestAuthors(TestCase):
 
     def testPutSuccess(self):
         data = {
-            'name': 'userTest2',
+            'name': 'userTest',
             'picture': 'https://picture22.url'
         }
         response = self.client.put('/api/admin/authors/1', data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data,
                          {'id': 1,
-                          'name': 'userTest2',
+                          'name': 'userTest',
                           'picture': 'https://picture22.url'
                           }
                          )
 
     def testPutFail(self):
         data = {
-            'first_name': 'userTest2',
+            'first_name': 'userTest',
             'picture': 'https://picture22.url'
         }
         response = self.client.put('/api/admin/authors/1', data)
